@@ -1,0 +1,26 @@
+<main role="main">
+  <div class="text-center album py-5">
+    <div class="container col-10">
+    <div class="container col-4">
+      <p class="new-post-text"><%= link_to '생성', new_post_path, :class => 'btn btn-lg btn-success btn-block' %></p>
+    </div>
+    <div class="album py-5">
+      <div class="row">
+        <% @posts.each do |post| %>
+        <div class="col-md-3">
+          <div class ="card mb-4 box-shadow"> 
+          <div class="card-body">
+          <h5 style="height:60px;"><%= link_to post.title, post, :class => "post-title-text" %></h5>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+            <%= link_to '수정', edit_post_path(post) , :class => "btn btn-success" %>
+            <%= link_to '삭제', post, method: :delete, :class => "btn btn-light post-title-delete",  data: { confirm: '정말 삭제하시겠습니까?' } %>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>  
+</main>
