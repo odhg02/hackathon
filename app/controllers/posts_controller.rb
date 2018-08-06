@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    
     if params[:membertype]
       @posts = Post.search(params[:membertype])
       @temp = params[:membertype]
@@ -14,6 +15,7 @@ class PostsController < ApplicationController
         @posts = Post.search("dfdfdfadfd")
       end
     end
+    
   end
 
   # GET /posts/1
