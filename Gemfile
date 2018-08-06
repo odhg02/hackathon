@@ -6,6 +6,7 @@ gem 'rolify'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'rails_db'
+gem 'activeadmin'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

@@ -1,26 +1,86 @@
-<main role="main">
-  <div class="text-center album py-5">
-    <div class="container col-10">
+<script type="text/javascript">
+  function changeUser() {
+    var show = document.getElementsByName("show");
+    if(show[0].checked == true) {
+      supply.style.display = "block";
+      demand.style.display = "none";
+    }
+    else {
+      supply.style.display = "none";
+      demand.style.visibility = "visible";
+      demand.style.display = "block";
+    }
+  }
+</script>
+<br><br><br><br><br><br><br>
+<center>
+  <form action="posts" method="get">
+    <select name="category" style="font-size: 14px;">
+      <option selected value="1">공급자</option>
+      <option value="2">수요자</option>
+    </select>
+    <button type="submit" style="color:white; font-size:13px;" class="btn btn-danger btn-sm btn-signin">이동</button>
+  </form>
+</center>
+<!--
+<input type="radio" name="show" value="supply" checked="true" onClick="changeUser()">공급자 
+<input type="radio" name="show" value="demand" onClick="changeUser()">수요자</center><br><br>-->
+<div id="supply" class="text-center album py-5" display="none">
+  <div class="container col-10">
     <div class="container col-4">
+      <% if current_user.has_role? :supply %>
       <p class="new-post-text"><%= link_to '생성', new_post_path, :class => 'btn btn-lg btn-success btn-block' %></p>
+      <% end %>
+    </div>
+  <div class="album py-5">
+    <div class="row">
+      <% @posts.each do |post| %>
+      <% if post.user.user_type == "1" %>
+      <div class="col-md-3">
+        <div class ="card mb-4 box-shadow"> 
+          <div class="card-body">
+            <h5 style="height:60px;"><%= link_to post.title, post, :class => "post-title-text" %></h5>
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="btn-group">
+                <%= link_to '수정', edit_post_path(post) , :class => "btn btn-success" %>
+                <%= link_to '삭제', post, method: :delete, :class => "btn btn-light post-title-delete",  data: { confirm: '정말 삭제하시겠습니까?' } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div id="demand" class="text-center album py-5">
+  <div class="container col-10">
+    <div class="container col-4">
+      <% if current_user.has_role? :demand %>
+      <p class="new-post-text"><%= link_to '생성', new_post_path, :class => 'btn btn-lg btn-success btn-block' %></p>
+      <% end %>
     </div>
     <div class="album py-5">
       <div class="row">
         <% @posts.each do |post| %>
+        <% if post.user.user_type == "2" %>
         <div class="col-md-3">
           <div class ="card mb-4 box-shadow"> 
-          <div class="card-body">
-          <h5 style="height:60px;"><%= link_to post.title, post, :class => "post-title-text" %></h5>
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="btn-group">
-            <%= link_to '수정', edit_post_path(post) , :class => "btn btn-success" %>
-            <%= link_to '삭제', post, method: :delete, :class => "btn btn-light post-title-delete",  data: { confirm: '정말 삭제하시겠습니까?' } %>
+            <div class="card-body">
+              <h5 style="height:60px;"><%= link_to post.title, post, :class => "post-title-text" %></h5>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <%= link_to '수정', edit_post_path(post) , :class => "btn btn-success" %>
+                  <%= link_to '삭제', post, method: :delete, :class => "btn btn-light post-title-delete",  data: { confirm: '정말 삭제하시겠습니까?' } %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-          </div>
-        </div>
+        <% end %>
         <% end %>
       </div>
-    </div>  
-</main>
+    </div>
+  </div>
+</div>
