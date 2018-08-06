@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :posts
   root 'home#index'
   get 'home/index'
+  post '/posts/:post_id' =>"comments#create"
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

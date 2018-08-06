@@ -1,11 +1,19 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :show, :new, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    if params[:membertype]
+      @posts = Post.search(params[:membertype])
+      @temp = params[:membertype]
+    else
+      @posts = Post.all
+      if @posts.present?
+        @posts = Post.search("dfdfdfadfd")
+      end
+    end
   end
 
   # GET /posts/1
@@ -26,6 +34,8 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    @post.membertype = current_user.user_type
 
     respond_to do |format|
       if @post.save
