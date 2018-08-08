@@ -14,7 +14,7 @@
     <% @qnas.each do |qna| %>
       <tr>
         <td><%= link_to qna.title, qna %></td>
-        <td><%= qna.user.email %></td>
+        <td><%= qna.content %></td>
       </tr>
     <% end %>
   </tbody>

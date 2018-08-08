@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :qnas
   resources :notices
   resources :reviews
   resources :posts
   root 'home#index'
   get 'home/index'
+  post '/posts/:post_id' =>"comments#create"
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

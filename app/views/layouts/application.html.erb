@@ -50,7 +50,8 @@
     }
     #signupImg{
       width: 50%;
-      height: 95%;
+      height: 97%;
+      margin-top: 8%;
       margin-right: 5%;
       float:left;
     }
@@ -74,27 +75,47 @@
             <%= link_to "로그아웃", destroy_user_session_path, :class => "left" %>
             <% else %>
             <%= link_to '로그인' ,new_user_session_path, :class => "left" %>
+            <%= link_to '회원가입' , new_user_registration_path, :class => "left" %>
             <% end %>
           </div>
           <center>
             <%= link_to 'RE:space', '/', :class => "logo" %>
           </center>
-          <div id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="/posts">리모델링 찾기</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="/reviews">리뷰</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="/notices">공지</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="/qnas">QnA</a>
-              </li>
-            </ul>
-          </div>
+          <% if user_signed_in? %>
+            <div id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="/posts">리모델링 찾기</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="/reviews">리뷰</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="/notices">공지</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="/qnas">QnA</a>
+                </li>
+              </ul>
+            </div>
+          <%else%>
+            <div id="navbarResponsive">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="/home/index">리모델링 찾기</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="/home/index">리뷰</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="/home/index">공지</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="/home/index">QnA</a>
+                </li>
+              </ul>
+            </div>
+          <%end%>
       </div>
     </nav>
 <%= yield %>

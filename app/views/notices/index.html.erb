@@ -14,7 +14,7 @@
     <% @notices.each do |notice| %>
       <tr>
         <td><%= link_to notice.title, notice %></td>
-        <td><%= notice.user.email %></td>
+        <td><%= notice.content %></td>
       </tr>
     <% end %>
   </tbody>

@@ -14,7 +14,7 @@
     <% @reviews.each do |review| %>
       <tr>
         <td><%= link_to review.title, review %></td>
-        <td><%= review.user.email %></td>
+        <td><%= review.content %></td>
       </tr>
     <% end %>
   </tbody>

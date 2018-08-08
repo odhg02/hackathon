@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  after_create :assign_default_role
+  rolify
   # 프로필 사진 추가를 위해 Uploader 생성
   mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
@@ -6,10 +8,21 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :posts
-  
+  has_many :comments
   # User Avatar Validation
   validates_integrity_of  :avatar
   validates_processing_of :avatar
+
+  scope :supply, -> {where(user_type: "1")}
+  scope :demand, -> {where(user_type: "2")}
+
+  def assign_default_role
+    if self.user_type == "1"
+      add_role(:supply)
+    elsif self.user_type =="2"
+      add_role(:demand)
+    end
+  end
   
   private
     def avatar_size_validation
