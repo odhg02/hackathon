@@ -1,14 +1,30 @@
 class CommentsController < ApplicationController
-    skip_before_filter :verify_authenticity_token
+  before_action :authenticate_user!
     
-    def create
-        @post = Post.find(params[:post_id])
-        @comment = @post.comments.new
-        @comment.comment = params[:comment]
-        @comment.user_id = params[:user_id]
-        @comment.save
-        
-        redirect_to @post
+  def create
+    @new_comment = Comment.new(set_comment_params)
+    @new_comment.user_id = current_user.id
+    @new_comment.post_id = params[:post_id]
+    respond_to do |format|
+      if @new_comment.save
+        @post = @new_comment.post
+        format.js
+      else
+        format.html{ redirect_to :back, notice: "Error" }
+      end
+    end
+  end
     
+  def destroy
+    @comment = Comment.find_by(id: params[:id])
+    @comment.destroy
+    respond_to do |format|
+      format.js
+    end
+  end
+    
+  private
+    def set_comment_params
+      params.require(:comment).permit(:comment)
     end
 end

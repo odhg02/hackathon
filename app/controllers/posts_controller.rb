@@ -1,26 +1,19 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    
-    if params[:membertype]
-      @posts = Post.search(params[:membertype])
-      @temp = params[:membertype]
-    else
-      @posts = Post.all
-      if @posts.present?
-        @posts = Post.search("dfdfdfadfd")
-      end
-    end
-    
+    @posts = Post.search(params[:membertype])
+    @temp = params[:membertype]
+    @users = User.where(user_type: "1")
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @comment = Comment.new
   end
 
   # GET /posts/new

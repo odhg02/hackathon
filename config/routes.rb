@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   resources :qnas
   resources :notices
   resources :reviews
-  resources :posts
-  root 'home#index'
+  resources :posts do
+    resources :comments, only: [:create, :destroy], defaults: { format: 'js' }
+  end
+  root 'home#temp'
+  get 'home/temp'
   get 'home/index'
+  get 'home/matching'
   post '/posts/:post_id' =>"comments#create"
 
   devise_for :users
