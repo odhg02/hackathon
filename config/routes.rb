@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'home/temp'
   get 'home/index'
   get 'home/matching'
+  get '/blog' => 'home#blog'
+  get '/details' => 'home#blog-details'
   post '/posts/:post_id' =>"comments#create"
 
   devise_for :users
