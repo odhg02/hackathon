@@ -11,19 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, :class => "form-control" %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :content %><br>
-    <%= f.text_area :content %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+    <%= f.text_area :content, :class => "content-area form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "작성" , :class => "btn btn-lg btn-block offset-sm-4 col-4" %>
   </div>
 <% end %>

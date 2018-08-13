@@ -1,9 +1,10 @@
 class CreateReviews < ActiveRecord::Migration
   def change
     create_table :reviews do |t|
-      t.string :title
-      t.text :content
       t.references :user, index: true, foreign_key: true
+      t.references :post, index: true, foreign_key: true
+      t.string :title
+      t.string :content
 
       t.timestamps null: false
     end

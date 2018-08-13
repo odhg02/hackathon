@@ -1,11 +1,13 @@
+#class ReviewsController < InheritedResources::Base
 class ReviewsController < ApplicationController
+
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index, :show, :new, :destroy]
-
+  
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
+    @review = Review.all
   end
 
   # GET /reviews/1
@@ -16,6 +18,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/new
   def new
     @review = Review.new
+    @temp = params[:post_id]
   end
 
   # GET /reviews/1/edit
@@ -26,10 +29,10 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
-
+    @review.post_id = params[:temp]
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+        format.html { redirect_to @review, notice: 'Notice was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
         format.html { render :new }
@@ -43,7 +46,7 @@ class ReviewsController < ApplicationController
   def update
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+        format.html { redirect_to @review, notice: 'Notice was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -57,7 +60,7 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to reviews_url, notice: 'review was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,9 +71,8 @@ class ReviewsController < ApplicationController
       @review = Review.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params[:review][:user_id] = current_user.id
-      params.require(:review).permit(:title, :content, :user_id)
+      params.require(:review).permit(:title, :content, :user_id, :post_id)
     end
 end
+

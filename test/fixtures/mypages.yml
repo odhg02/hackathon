@@ -2,12 +2,6 @@
 
 one:
   user_id: 
-  post_id: 
-  title: MyString
-  content: MyString
 
 two:
   user_id: 
-  post_id: 
-  title: MyString
-  content: MyString

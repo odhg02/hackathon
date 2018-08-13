@@ -26,8 +26,10 @@
     }
     .logo{
       font-family: 'designhouseOTFLight00';
-      font-size: 50px;
+      font-size: 45px;
       color: #BCE27F;
+      background-color: rgba(0,0,0,0);
+      margin-top: 10px;
     }
     .logo:hover{
       color: #BCE27F;
@@ -87,46 +89,40 @@
     a.supply:visited, a.customer:visited{
       color: white;
     }
+    a:hover{
+      background-color: rgba(0,0,0,0);
+    }
     .supply:hover, .customer:hover{
       background-color: #BCE27F; 
       color: white ;
       text-decoration: none;
     }
-    .links:hover{
-      background-color: #ffffff !important;
-      color: #000000;
-    }
     .links:visited{
       color: #000000 !important;
+    }
+    .content-area{
+      min-height:300px;
+    }
+    .btn{
+      background-color: #96B566;
+      outline: none;
     }
   </style>
 </head>
 <body>
 <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-          <div class="col-md-4">
+          <div class="offset-md-1 col-md-2">
             <% if user_signed_in? %>
-            <ul class="nav-item dropdown hidden-md-down">
-            <%= link_to "#", class: "nav-link dropdown-toggle", data: {toggle: "dropdown" }, role: "button", aria: {haspopup: "true", expanded: "false" } do %>
-            <%= current_user.name %>
-            <% end %>
-            <ul class="dropdown-menu dropdown-menu-right dropdown-info">
-            <li class="dropdown-item"><%= link_to "포토폴리오" %> </li>
-            <li class="dropdown-item"><%= link_to "내가 좋아하는 공급자" %> </li>
-            <li class="dropdown-item"><%= link_to "내 게시글" %> </li>
-            <li class="dropdown-item"><%= link_to "정보수정", "/users/edit", method: :get %></li>
-            <li class="dropdown-item"><%= link_to "로그아웃", destroy_user_session_path %> </li>
-            </ul>
-            </ul>
+            <%= link_to current_user.name, "/mypages/#{current_user.id}", :class => "left" %>
+            <%= link_to "로그아웃", destroy_user_session_path, :class => "left" %>
             <% else %>
             <%= link_to '로그인' ,new_user_session_path, :class => "left" %>
             <%= link_to '회원가입' , new_user_registration_path, :class => "left" %>
             <% end %>
           </div>
-          <div class="col-md-4">
-            <center><%= link_to 'RE:space', '/', :class => "logo " %></center>
-          </div>
-          <div id="navbarResponsive" class="col-md-4">
+            <%= link_to 'RE:space', '/', :class => "logo offset-sm-2 col-md-3" %>
+          <div id="navbarResponsive" class="col-md-3">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="/home/matching">리모델링 찾기</a>

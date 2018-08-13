@@ -11,7 +11,7 @@
   </thead>
 
   <tbody>
-    <% @reviews.each do |review| %>
+    <% @review.each do |review| %>
       <tr>
         <td><%= link_to review.title, review %></td>
         <td><%= review.content %></td>
@@ -23,5 +23,3 @@
 </div>
 </div>
 <br>
-
-<%= link_to 'New Post', new_review_path %>

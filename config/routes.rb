@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
+  resources :reviews
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :qnas
+  resources :qnas do
+    resources :qnacomments, only: [:create, :destroy], defaults: { format: 'js' }
+  end
   resources :notices
-  resources :reviews
   resources :posts do
     resources :comments, only: [:create, :destroy], defaults: { format: 'js' }
   end
@@ -11,9 +13,11 @@ Rails.application.routes.draw do
   get 'home/temp'
   get 'home/index'
   get 'home/matching'
+  get 'mypages/:user_id' => "mypages#index"
+  post '/posts/:post_id' =>"comments#create"
   get '/blog' => 'home#blog'
   get '/details' => 'home#blog-details'
-  post '/posts/:post_id' =>"comments#create"
+  get 'reviews/new/:post_id' => 'reviews#new'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

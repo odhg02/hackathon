@@ -9,7 +9,7 @@
       
       <!-- 유형 추가 -->
       <div class="custom-control custom-radio">
-        <%= f.radio_button :user_type, "1" %> 
+        <%= f.radio_button :user_type, "1", :checked => true %> 
         <%= f.label :user_type, '공급자', :class => "rlabel" %>
         <%= f.radio_button :user_type, "2" %>
         <%= f.label :user_type, '수요자' ,:class => "rlabel" %>

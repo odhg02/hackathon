@@ -1,6 +1,6 @@
 class QnasController < ApplicationController
   before_action :set_qna, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :show, :new, :destroy]
+  before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update, :destroy]
 
   # GET /qnas
   # GET /qnas.json
@@ -11,6 +11,7 @@ class QnasController < ApplicationController
   # GET /qnas/1
   # GET /qnas/1.json
   def show
+    @qnacomment = Qnacomment.new
   end
 
   # GET /qnas/new
@@ -26,7 +27,7 @@ class QnasController < ApplicationController
   # POST /qnas.json
   def create
     @qna = Qna.new(qna_params)
-
+    @qna.user_id = current_user.id
     respond_to do |format|
       if @qna.save
         format.html { redirect_to @qna, notice: 'Qna was successfully created.' }
