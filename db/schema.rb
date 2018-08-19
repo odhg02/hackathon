@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180813070543) do
+ActiveRecord::Schema.define(version: 20180817012410) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -59,10 +59,24 @@ ActiveRecord::Schema.define(version: 20180813070543) do
 
   create_table "mypages", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+    t.integer  "cached_votes_total",      default: 0
+    t.integer  "cached_votes_score",      default: 0
+    t.integer  "cached_votes_up",         default: 0
+    t.integer  "cached_votes_down",       default: 0
+    t.integer  "cached_weighted_score",   default: 0
+    t.integer  "cached_weighted_total",   default: 0
+    t.float    "cached_weighted_average", default: 0.0
   end
 
+  add_index "mypages", ["cached_votes_down"], name: "index_mypages_on_cached_votes_down"
+  add_index "mypages", ["cached_votes_score"], name: "index_mypages_on_cached_votes_score"
+  add_index "mypages", ["cached_votes_total"], name: "index_mypages_on_cached_votes_total"
+  add_index "mypages", ["cached_votes_up"], name: "index_mypages_on_cached_votes_up"
+  add_index "mypages", ["cached_weighted_average"], name: "index_mypages_on_cached_weighted_average"
+  add_index "mypages", ["cached_weighted_score"], name: "index_mypages_on_cached_weighted_score"
+  add_index "mypages", ["cached_weighted_total"], name: "index_mypages_on_cached_weighted_total"
   add_index "mypages", ["user_id"], name: "index_mypages_on_user_id"
 
   create_table "notices", force: :cascade do |t|
@@ -74,6 +88,18 @@ ActiveRecord::Schema.define(version: 20180813070543) do
   end
 
   add_index "notices", ["user_id"], name: "index_notices_on_user_id"
+
+  create_table "portfolios", force: :cascade do |t|
+    t.string   "name"
+    t.text     "career"
+    t.string   "grade"
+    t.text     "introduction"
+    t.integer  "mypage_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "portfolios", ["mypage_id"], name: "index_portfolios_on_mypage_id"
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -114,6 +140,7 @@ ActiveRecord::Schema.define(version: 20180813070543) do
     t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "avatar"
   end
 
   add_index "reviews", ["post_id"], name: "index_reviews_on_post_id"
@@ -158,5 +185,20 @@ ActiveRecord::Schema.define(version: 20180813070543) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
 
 end

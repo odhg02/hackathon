@@ -1,35 +1,42 @@
-<br><br><br><br><br><br><br>
+<br><br><br><br><br>
 <% if @temp == "1" %>
 <div class="text-center album py-5" display="none">
   <div class="album py-5 offset-sm-1 col-10">
     <div class="row">
-      <% @users.each do |user| %>
-      <div class="col-md-3">
-        <div class ="card mb-4 box-shadow"> 
-          <div class="card-body">
-            <%= link_to image_tag("#{user.avatar}"), "/mypage/#{user.id}", :class => "post-title-text" %>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <center><h5><%= user.name %></h5></center><br>
-                <%= user.introduce %>
+      <% @mypages.each do |mypage| %>
+        <% if mypage.user.user_type == "1" %>
+        <div class="col-md-3">
+          <div class ="card mb-4 box-shadow"> 
+            <div class="card-body">
+            <% if mypage.user.avatar.blank? %>
+            <%= link_to image_tag("default_image.png"), "/mypages/#{mypage.user.id}", :class => "post-title-text" %>
+            <% else %>
+            <%= link_to image_tag("#{mypage.user.avatar}"), "/mypages/#{mypage.user.id}", :class => "post-title-text" %>
+            <% end %>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <center><h5><%= mypage.user.name %></h5><br>
+                  <%= mypage.user.introduce %><br>
+                  좋아요 : <%= mypage.get_upvotes.size %>
+                  싫어요 : <%= mypage.get_downvotes.size %></center>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+        <% end %>
       <% end %>
-    </div>
   </div>
 <% elsif @temp == "2" %>
 <div class="row">
 <div class="col-md-12">
-<br><br><br><br>
-<div class="table-responsive">
-<table class="table table-hover table-bordered">
+<br><br><br>
+<div class="container">
+<table class="table table-hover table-striped">
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Button</th>
+      <th class="text-center">Title</th>
+      <th class="text-center">Actions</th>
     </tr>
   </thead>
 
@@ -37,7 +44,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= link_to post.title, post, :class => "post-title-text" %></td>
-        <td>
+        <td class="text-center">
           <%= link_to '수정', edit_post_path(post) , :class => "btn", :style => "background-color: #BCE27F;" %>
           <%= link_to '삭제', post, method: :delete, :class => "btn btn-light post-title-delete",  data: { confirm: '정말 삭제하시겠습니까?' } %>
         </td>
@@ -52,7 +59,7 @@
   <div class="container col-10">
     <div class="container col-4">
       <% if (current_user.user_type == "2" && @temp == "2") || (current_user.user_type == "3" && @temp == "2") %>
-      <p class="new-post-text"><%= link_to '생성', new_post_path, :class => 'btn btn-lg btn-block', :style => "background-color: #BCE27F;" %></p>
+      <p class="new-post-text"><%= link_to '생성', new_post_path, :class => 'btn btn-lg btn-block', :style => "background-color: #96B566;" %></p>
       <% end %>
   </div>
 </div>

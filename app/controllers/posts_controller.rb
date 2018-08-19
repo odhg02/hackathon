@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     @posts = Post.search(params[:membertype])
     @temp = params[:membertype]
     @users = User.where(user_type: "1")
+    @mypages = Mypage.order(:cached_votes_up => :desc)
   end
 
   # GET /posts/1

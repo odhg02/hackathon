@@ -643,7 +643,7 @@ div#preloader {
 }
 
 .tab-menu .nav-tabs>li>a:hover {
-  border-color: #eee #eee #ddd;
+  border-color: #eee #eee #ccc;
 }
 
 .tab-menu {
@@ -828,7 +828,7 @@ div#preloader {
 }
 
 .single-team-member {
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
 }
 
 .team-left-text h4 {
@@ -1183,7 +1183,7 @@ div#preloader {
 }
 
 .project-dec h4 {
-  color: #ddd;
+  color: #ccc;
   font-size: 24px;
   margin-top: -45px;
   padding-top: 50%;
@@ -1193,7 +1193,7 @@ div#preloader {
 }
 
 .project-dec span {
-  color: #ddd;
+  color: #ccc;
   font-size: 13px;
 }
 
@@ -1448,7 +1448,7 @@ div#preloader {
 }
 
 .guest-rev {
-  color: #ddd;
+  color: #ccc;
   font-size: 16px;
 }
 
@@ -1959,7 +1959,7 @@ div#preloader {
 }
 
 .left-blog h4 {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ccc;
   color: #444;
   font-size: 17px;
   font-weight: 500;
@@ -1976,7 +1976,7 @@ div#preloader {
 }
 
 .left-blog li {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ccc;
   display: block;
 }
 
@@ -1991,7 +1991,7 @@ div#preloader {
 }
 
 .recent-single-post {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #ccc;
   display: block;
   overflow: hidden;
   padding: 15px 10px;

@@ -1,8 +1,7 @@
 #class ReviewsController < InheritedResources::Base
 class ReviewsController < ApplicationController
-
   before_action :set_review, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :show, :new, :destroy]
+  before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   
   # GET /reviews
   # GET /reviews.json
@@ -13,6 +12,7 @@ class ReviewsController < ApplicationController
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+
   end
 
   # GET /reviews/new
@@ -29,7 +29,8 @@ class ReviewsController < ApplicationController
   # POST /reviews.json
   def create
     @review = Review.new(review_params)
-    @review.post_id = params[:temp]
+    @review.user_id = current_user.id
+    @review.post_id = params[:post_id]
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Notice was successfully created.' }
@@ -72,7 +73,7 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-      params.require(:review).permit(:title, :content, :user_id, :post_id)
+      params.require(:review).permit(:title, :content, :avatar)
     end
 end
 

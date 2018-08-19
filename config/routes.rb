@@ -13,13 +13,21 @@ Rails.application.routes.draw do
   get 'home/temp'
   get 'home/index'
   get 'home/matching'
-  get 'mypages/:user_id' => "mypages#index"
+  get '/mypages/:user_id' => "mypages#index"
+  put '/mypages/:user_id/like', to: 'mypages#upvote', as: 'like_mypage'
+  put '/mypages/:user_id/dislike', to: 'mypages#downvote', as: 'dislike_mypage'
   post '/posts/:post_id' =>"comments#create"
   get '/blog' => 'home#blog'
   get '/details' => 'home#blog-details'
-  get 'reviews/new/:post_id' => 'reviews#new'
-
+  get '/reviews/new/:post_id' => 'reviews#new'
+  post '/portfolios/create' => "portfolios#create"
+  get '/portfolios/index'
+  post '/tinymce_assets' => 'tinymce_assets#create'
+  get '/mypage/index'
+  get 'portfolios/edit' => "portfolios#edit"
+  post '/portfolios/update' => "portfolios#update"
   devise_for :users
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

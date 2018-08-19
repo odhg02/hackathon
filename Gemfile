@@ -1,12 +1,29 @@
 source 'https://rubygems.org'
 
+# 회원가입/로그인
 gem 'devise'
+
+# 권한 설정
 gem 'cancancan'
 gem 'rolify'
+
+# 이미지 업로드 및 크기 조절
 gem 'carrierwave'
 gem 'mini_magick'
+
+# DB 확인
 gem 'rails_db'
+
+# 관리자 페이지 설정
 gem 'activeadmin'
+
+# 좋아요
+gem 'acts_as_votable', '~> 0.11.1'
+
+# 텍스트 편집기
+gem 'tinymce-rails'
+gem 'tinymce-rails-langs'
+gem 'tinymce-rails-imageupload', '~> 4.0.0.beta'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

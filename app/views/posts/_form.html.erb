@@ -18,9 +18,11 @@
     <%= f.label :title %><br>
     <%= f.text_field :title, :class => "form-control" %>
   </div>
+  <!-- tinymce 편집기 적용 -->
   <div class="form-group">
-    <%= f.label :content %><br>
-    <%= f.text_area :content, :class => "content-area form-control"%>
+      <%= f.label :content %>
+      <%= tinymce %>
+      <%= f.text_area :content, id: :content, class: "content-area form-control tinymce", rows: "10" %>
   </div>
   <div class="actions">
     <%= f.submit "작성" , :class => "btn btn-lg btn-block offset-sm-4 col-4"%>

@@ -1,7 +1,5 @@
 
-<br><br><br><br>
-
-<div class="signUp-container offset-sm-2 col-md-8">
+<div class="signUp-container offset-2 col-8">
   <img src="/oneroom.png" alt="img" id="signupImg"/>
   <div class="sup-form-container">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -14,16 +12,15 @@
         <%= f.radio_button :user_type, "2" %>
         <%= f.label :user_type, '수요자' ,:class => "rlabel" %>
       </div>
-    
       <div class="form-group">
         <%= f.label :email %><br/>
-        <%= f.email_field :email, :class => "form-control col-md-8", autofocus: true, autocomplete: "email"%><br/>
+        <%= f.email_field :email, :class => "form-control col-10", autofocus: true, autocomplete: "email"%>
       </div>
       
       <!-- 이름 추가 -->
       <div class="form-group">
         <%= f.label :name %><br/>
-        <%= f.text_field :name, :class => "form-control col-md-8", autocomplete: "off" %><br/>
+        <%= f.text_field :name, :class => "form-control col-10", autocomplete: "off" %>
       </div>
     
       <div class="form-group">
@@ -31,12 +28,12 @@
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %>
-        <br/><%= f.password_field :password, :class => "form-control col-md-8", autocomplete: "off" %><br/>
+        <br/><%= f.password_field :password, :class => "form-control col-10", autocomplete: "off" %>
       </div>
     
       <div class="form-group">
         <%= f.label :password_confirmation %><br/>
-        <%= f.password_field :password_confirmation, :class => "form-control col-md-8", autocomplete: "off" %><br/>
+        <%= f.password_field :password_confirmation, :class => "form-control col-10", autocomplete: "off" %>
       </div>
       
       <!-- 프로필 사진 추가(carrierwave, mini_magick) -->
@@ -50,11 +47,11 @@
       <!-- 한 줄 소개 추가 -->
       <div class="form-group">
         <%= f.label :introduce %><br/>
-        <%= f.text_field :introduce, :class => "form-control col-md-8", autocomplete: "off" %><br/><br/>
+        <%= f.text_field :introduce, :class => "form-control col-10", autocomplete: "off" %>
       </div>
     
       <div class="form-group">
-        <%= f.submit "회원가입", :class => "btn btn-lg btn-block col-md-8", :id => "login-button"%>
+        <%= f.submit "회원가입", :class => "btn btn-lg btn-block col-10", :id => "login-button"%>
       </div>
     <% end %>
   </div>
@@ -63,8 +60,6 @@
     <script>
       $(document).ready(function(){
         $("#mainNav").css("display","none");
-        $(".rlabel").css("margin-right","10%").css("margin-top","2%");
-        $("body").css("display","flex").css("flex-direction","row");
-        $(".sup-form-container").css("display","flex").css("flex-direction","column").css("margin-top","8%");
+        $(".rlabel").css("margin-right","10%");
       });
     </script>

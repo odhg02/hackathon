@@ -17,4 +17,11 @@
  */
  
 
+ /* 글자 제한용 */ 
+ .etc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 @import 'font.scss';
