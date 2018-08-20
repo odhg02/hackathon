@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   def index
     @review = Review.all
+    @review = Review.order("created_at DESC").page params[:page]
   end
 
   # GET /reviews/1
@@ -31,6 +32,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     @review.post_id = params[:post_id]
+    @review.rating = params[:rating].to_i
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Notice was successfully created.' }
@@ -73,7 +75,7 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-      params.require(:review).permit(:title, :content, :avatar)
+      params.require(:review).permit(:title, :content, :rating, :avatar)
     end
 end
 

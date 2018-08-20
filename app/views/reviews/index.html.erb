@@ -1,7 +1,7 @@
-<%= link_to '리뷰작성', new_review_path, :class => "btn btn-lg btn-block offset-5", :style => "width: 17%; margin-top:4%; margin-bottom: 1%" %>
+<%= link_to '리뷰작성', new_review_path, :class => "btn btn-lg btn-block offset-5", :style => "width: 17%; margin-top:10%; margin-bottom: 1%" %>
 
 <% @review.each do |review| %>
-  <a href="#" class="review-card offset-3">
+  <a href="/reviews/<%= review.id %>" class="review-card offset-3">
     <div class="d-flex justify-content-between">
       <b>작성 번호: <%=review.id%></b>
       <h5><%= review.title %></h5>
@@ -15,9 +15,9 @@
     <div>
       <center><%= image_tag review.avatar, :style => "width: 250px; height: 250px;", :id => "image"%></center>
     </div>
+    <div>
+      <center><h5>평점 : <%= review.rating %></h5></center>
+    </div>
   </a>
 <%end%>
-
-
-
-<br/><br/>
+<%= paginate @review %>

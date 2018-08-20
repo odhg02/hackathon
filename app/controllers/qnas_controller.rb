@@ -6,6 +6,7 @@ class QnasController < ApplicationController
   # GET /qnas.json
   def index
     @qnas = Qna.all
+    @qnas = Qna.order("created_at DESC").page params[:page]
   end
 
   # GET /qnas/1

@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @notice.title %>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @notice.content %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @notice.user %>
-</p>
-
-<%= link_to 'Edit', edit_notice_path(@notice) %> |
-<%= link_to 'Back', notices_path %>
+<div class="show-container offset-3 col-6" style="margin-top: 10%">
+  <p id="notice"><%= notice %></p>
+  
+  <div>
+    <strong>제목:</strong>
+    <%= @notice.title%>
+  </div>
+  
+  <div>
+    <strong>작성자:</strong>
+    <%= @notice.user %>
+  </div>
+  
+  <div>
+    <strong>내용:</strong>
+    <%= @notice.content %>
+  </div>
+  
+  
+</div>
+<br/>
+<div class="offset-8">
+<% if current_user.has_any_role? :admin %>
+<%= link_to '수정', edit_notice_path(@notice) ,:class => "btn btn-lg"%>
+<% end %>
+<%= link_to '뒤로가기', notices_path ,:class => "btn btn-lg"%></div>

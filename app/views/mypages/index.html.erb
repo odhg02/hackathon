@@ -138,9 +138,9 @@
                   <form method='post' action='/portfolios/create/#{@user.id}'>
                      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
                         <label>이름</label>
-                        <input type="text" name="name" required/><br/>
+                        <input type="text" class="form-control" name="name" required/><br/>
                         <label>경력</label><br/>
-                         <textarea name = "career" cols = "50" rows = "5"  
+                         <textarea name = "career" cols = "50" rows = "5" class="form-control" 
                                        placeholder="경력사항을 입력해주세요."></textarea><br/>
                                        
                         <label>학력(대학교)</label>
@@ -153,13 +153,13 @@
                         </select>
                         <br/>
                         <label>자기소개</label><br/>
-                        <textarea name = "introduction" cols = "50" rows = "5"  
+                        <textarea name = "introduction" cols = "50" rows = "5" class="form-control"  
                                        placeholder="자기소개를 입력해주세요."></textarea><br/>
                      	<input type="submit" value="submit" class="btn btn-lg btn-block">
-                     	<input type = "reset" value = "reset"/>
+                     	<input type = "reset" value = "reset" class="btn btn-lg btn-block"/>
                      	<br/>
                   </form>
-               <% elsz %>
+               <% else %>
                   <label>이름</label><br/>
                   <span><%= @portfolio.name %></span><br/><br/>
                   <label>경력</label><br/>

@@ -33,10 +33,11 @@
     .logo:hover{
       color: #BCE27F;
       text-decoration: none;
-      background-color: rgba(255,255,255,1);
+      background-color: rgba(255,255,255,0);
     }
     #mainNav{
      position: fixed;
+     background-color: rgb(255,255,255);
     }
     #form{
       font-family: 'SeoulHangangM';
@@ -139,11 +140,20 @@
       opacity:0.7;
       background-color: rgba(234,234,234,0.8);
     }
+    .show-container{
+      border: 1px solid #BCE27F;
+      border-radius: 10px;
+    }
   </style>
   <script>
     $(window).scroll(function(){
         if($(window).scrollTop()){
-          $("#mainNav").css("background-color", "rgba(0,0,0,0.8)")
+          $("#mainNav").css("background-color", "rgba(0,0,0,0.8)");
+          $("a.nav-link").css("color","gray");
+        }
+        else{
+          $("#mainNav").css("background-color", "rgba(0,0,0,0)");
+          $("a.nav-link").css("color","white;");
         }
     });
     

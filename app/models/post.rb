@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   has_many :reviews
   scope :published, -> {where.not(created_at: nil)}
   scope :unpublished, -> {where(created_at: nil)}
-  
+  paginates_per 3 
   def self.search(query)
     self.where("membertype LIKE ?","%#{query}%")
   end

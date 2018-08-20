@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_many :comments
   has_many :qnacomments
+  has_many :ratings
   # User Avatar Validation
   validates_integrity_of  :avatar
   validates_processing_of :avatar

@@ -37,6 +37,7 @@
     <tr>
       <th class="text-center">Title</th>
       <th class="text-center">Actions</th>
+      <th class="text-center">Category</th>
     </tr>
   </thead>
 
@@ -56,6 +57,7 @@
 </div>
 </div>
 <% end %>
+
   <div class="container col-10">
     <div class="container col-4">
       <% if (current_user.user_type == "2" && @temp == "2") || (current_user.user_type == "3" && @temp == "2") %>
@@ -63,3 +65,4 @@
       <% end %>
   </div>
 </div>
+<%= paginate @posts %>

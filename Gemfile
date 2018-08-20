@@ -20,6 +20,9 @@ gem 'activeadmin'
 # 좋아요
 gem 'acts_as_votable', '~> 0.11.1'
 
+# 페이지네이션
+gem 'kaminari'
+
 # 텍스트 편집기
 gem 'tinymce-rails'
 gem 'tinymce-rails-langs'

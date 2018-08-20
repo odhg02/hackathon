@@ -5,7 +5,8 @@ class CreateReviews < ActiveRecord::Migration
       t.references :post, index: true, foreign_key: true
       t.string :title
       t.string :content
-
+      t.float :rating
+      
       t.timestamps null: false
     end
   end

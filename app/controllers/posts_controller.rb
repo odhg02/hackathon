@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.search(params[:membertype])
+    @posts = Post.order("created_at DESC").page params[:page]
     @temp = params[:membertype]
     @users = User.where(user_type: "1")
     @mypages = Mypage.order(:cached_votes_up => :desc)

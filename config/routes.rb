@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get '/blog' => 'home#blog'
   get '/details' => 'home#blog-details'
   get '/reviews/new/:post_id' => 'reviews#new'
+  post '/reviews/:post_id' => 'reviews#create'
   post '/portfolios/create' => "portfolios#create"
   get '/portfolios/index'
   post '/tinymce_assets' => 'tinymce_assets#create'

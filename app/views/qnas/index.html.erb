@@ -1,8 +1,8 @@
-<%= link_to 'Q&A',new_qna_path, :class => "btn btn-lg btn-block offset-5", :style => "width: 17%; margin-top:4%; margin-bottom: 1%" %>
+<%= link_to 'Q&A',new_qna_path, :class => "btn btn-lg btn-block offset-5", :style => "width: 17%; margin-top:10%; margin-bottom: 1%" %>
 
 <% @qnas.each do |qna| %>
   <div class="overly offset-3"></div> 
-  <a href="#" class="review-card offset-3">
+  <a href="/qnas/<%= qna.id %>" class="review-card offset-3">
     <div class="d-flex justify-content-between">
       <b>작성 번호: <%=qna.id%></b>
       <h5><%= qna.title %></h5>
@@ -14,6 +14,6 @@
     </div>
   </a>
 <%end%>
-
+<%= paginate @qnas %>
 
 

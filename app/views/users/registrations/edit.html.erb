@@ -1,4 +1,4 @@
-<br><br><br><br><br><br><br>
+<br><br><br><br><br>
 <center>
 <h2>정보 수정</h2>
 
@@ -15,38 +15,37 @@
 
   <div class="field">
     <%= f.label :이메일 %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, class: 'form-control col-md-offset-3 col-md-7', autofocus: true, autocomplete: "email" %>
   </div>
-
+  <br>
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-  
+  <br>
   <div class="field">
     <%= f.label :자기소개 %><br />
-    <%= f.text_field :introduce, autocomplete: "introduce" %><br/>
+    <%= f.text_field :introduce, class: 'form-control col-md-offset-3 col-md-7', autocomplete: "introduce" %><br/>
   </div>
-
-
+  <br>
   <div class="field">
     <%= f.label :변경할비밀번호 %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, class: 'form-control col-md-offset-3 col-md-7', autocomplete: "off" %>
+    <br><br>
     <% if @minimum_password_length %>
-      <br />
       <em><%= @minimum_password_length %> 자 이상</em>
     <% end %>
   </div>
-
+  <br>
   <div class="field">
     <%= f.label :비밀번호확인 %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, class: 'form-control col-md-offset-3 col-md-7', autocomplete: "off" %>
   </div>
-
+  <br><br>
   <div class="field">
     <%= f.label :현재비밀번호 %> <br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+    <%= f.password_field :current_password, class: 'form-control col-md-offset-3 col-md-7', autocomplete: "off" %>
   </div>
-
+  <br><br>
   <div class="actions">
     <%= f.submit "수정하기" %>
   </div>
