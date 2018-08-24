@@ -7,14 +7,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="assets/bootstrap.min.css" rel="stylesheet">
-  <!--<link href="assets/stylesheets/nivo-slider.css" rel="stylesheet">-->
-  <!--<link href="assets/stylesheets/owl.carousel.css" rel="stylesheet">-->
-  <!--<link href="assets/stylesheets/owl.transitions.css" rel="stylesheet">-->
-  <!--<link href="assets/stylesheets/animate.min.css" rel="stylesheet">-->
-  <!--<link href="assets/stylesheets/venobox.css" rel="stylesheet">-->
-  <!--<link href="assets/stylesheets/nivo-slider-theme.css" rel="stylesheet">-->
-  <!--<link href="assets/stylesheets/style.css" rel="stylesheet">-->
-  <!--<link href="assets/stylesheets/responsive.css" rel="stylesheet">-->
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
@@ -37,7 +29,6 @@
     }
     #mainNav{
      position: fixed;
-     background-color: rgb(255,255,255);
     }
     #form{
       font-family: 'SeoulHangangM';
@@ -91,8 +82,10 @@
       margin-bottom: 5%;
     }
     .supply, .customer{
-      margin: 5% 0% 5% 10%;
-      padding: 80px; 
+      width: 30%;
+      float: left;
+      margin-right: 10%;
+      padding: 50px; 
       background-color: #BCE27F; 
       font-family: 'SeoulHangangM'; 
       font-size: 30px;
@@ -126,6 +119,12 @@
       background-color: #96B566;
       outline: none;
     }
+    .btn:active{
+      outline:none;
+    }
+    a.nav-link:hover{
+        color: #BCE27F;
+    }
     /*리뷰부분 css*/
     .review-card{
       border: 1px solid lightgray;
@@ -141,6 +140,9 @@
       background-color: rgba(234,234,234,0.8);
     }
     .show-container{
+      width: 50%;
+      max-height: 100%;
+      padding: 15px;
       border: 1px solid #BCE27F;
       border-radius: 10px;
     }
@@ -149,7 +151,7 @@
     $(window).scroll(function(){
         if($(window).scrollTop()){
           $("#mainNav").css("background-color", "rgba(0,0,0,0.8)");
-          $("a.nav-link").css("color","gray");
+          $("a.nav-link").css("color","white;");
         }
         else{
           $("#mainNav").css("background-color", "rgba(0,0,0,0)");

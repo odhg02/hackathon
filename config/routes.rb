@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create, :destroy], defaults: { format: 'js' }
   end
+  get '/posts/:membertype/search' => 'posts#search'
   root 'home#temp'
   get 'home/temp'
   get 'home/index'
@@ -17,8 +18,6 @@ Rails.application.routes.draw do
   put '/mypages/:user_id/like', to: 'mypages#upvote', as: 'like_mypage'
   put '/mypages/:user_id/dislike', to: 'mypages#downvote', as: 'dislike_mypage'
   post '/posts/:post_id' =>"comments#create"
-  get '/blog' => 'home#blog'
-  get '/details' => 'home#blog-details'
   get '/reviews/new/:post_id' => 'reviews#new'
   post '/reviews/:post_id' => 'reviews#create'
   post '/portfolios/create' => "portfolios#create"

@@ -1,6 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update, :destroy, :search]
+
+  def search
+    @test = params[:category]
+    @posts = Post.where(membertype: "2", category: params[:category])
+    @posts = @posts.order("created_at DESC").page params[:page]
+  end
 
   # GET /posts
   # GET /posts.json
@@ -16,6 +22,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @comment = Comment.new
+    @matching = Matching.find_by(post_id: @post.id)
   end
 
   # GET /posts/new
@@ -77,6 +84,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :content, :user_id)
+      params.require(:post).permit(:title, :content, :user_id, :category)
     end
 end

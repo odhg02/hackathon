@@ -3,7 +3,9 @@ class HomeController < ApplicationController
   before_action :set_mypage, only: [:temp]
   
   def index
-
+    if user_signed_in?
+      redirect_to '/'
+    end
   end
   
   def temp

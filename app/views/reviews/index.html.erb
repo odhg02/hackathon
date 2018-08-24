@@ -15,8 +15,10 @@
     <div>
       <center><%= image_tag review.avatar, :style => "width: 250px; height: 250px;", :id => "image"%></center>
     </div>
+    <br/>
     <div>
-      <center><h5>평점 : <%= review.rating %></h5></center>
+      <center><label>평점 : </label>
+      <span><%=review.rating%></span></center>
     </div>
   </a>
 <%end%>

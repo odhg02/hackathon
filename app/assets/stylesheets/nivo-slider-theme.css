@@ -1,4 +1,4 @@
- /*
+/*
 Skin Name: Nivo Slider Default Theme
 Skin URI: http://nivo.dev7studios.com
 Description: The default skin for the Nivo Slider.
@@ -353,7 +353,7 @@ preview-2
 .preview-2 .nivo-directionNav a.nivo-prevNav::before {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   color: #ffffff;
-  content: "";
+  content: "<";
   cursor: pointer;
   font: 300 50px/50px FontAwesome;
   position: absolute;
@@ -380,7 +380,7 @@ preview-2
   border: 1px solid #fff;
   border-radius: 50%;
   color: #ffffff;
-  content: "";
+  content: ">";
   cursor: pointer;
   font: 100 30px/50px FontAwesome;
   height: 50px;
