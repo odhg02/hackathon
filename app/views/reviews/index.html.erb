@@ -1,25 +1,28 @@
-<%= link_to '리뷰작성', new_review_path, :class => "btn btn-lg btn-block offset-5", :style => "width: 17%; margin-top:10%; margin-bottom: 1%" %>
+<br/><br/><br/>
+  <% @review.each do |review| %>
+    <a href="/reviews/<%= review.id %>" class="review-card offset-3">
+      <div class="d-flex justify-content-between">
+        <b>작성 번호: <%=review.id%></b>
+        <h5><%= review.title %></h5>
+        <b>작성자: <%=review.user.name%></b>
+      </div>
+      <br/>
+      <div class="">
+        <center><p><%= content_tag(:span, truncate( raw( sanitize(review.content, :tags => %w(table tr td), :attributes => %w(id class style) ) ), :length => 100, :omission => "..."), class: "etc") %></p></center>
+      </div>
+  
+      <div>
+        <center><%= image_tag review.avatar, :style => "width: 250px; height: 250px;", :id => "image"%></center>
+      </div>
+      <br/>
+      <div>
+        <center><label>평점 : </label>
+        <span><%=review.rating%></span></center>
+      </div>
+    </a>
+  <%end%>
+  <center><%= paginate @review %></center>
+  <div class="container pagination justify-content-center" >
+    
+  </div>
 
-<% @review.each do |review| %>
-  <a href="/reviews/<%= review.id %>" class="review-card offset-3">
-    <div class="d-flex justify-content-between">
-      <b>작성 번호: <%=review.id%></b>
-      <h5><%= review.title %></h5>
-      <b>작성자: <%=review.user.name%></b>
-    </div>
-    <br/>
-    <div class="">
-      <center><p><%= content_tag(:span, truncate( raw( sanitize(review.content, :tags => %w(table tr td), :attributes => %w(id class style) ) ), :length => 100, :omission => "..."), class: "etc") %></p></center>
-    </div>
-
-    <div>
-      <center><%= image_tag review.avatar, :style => "width: 250px; height: 250px;", :id => "image"%></center>
-    </div>
-    <br/>
-    <div>
-      <center><label>평점 : </label>
-      <span><%=review.rating%></span></center>
-    </div>
-  </a>
-<%end%>
-<%= paginate @review %>

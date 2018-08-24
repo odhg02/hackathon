@@ -1,36 +1,35 @@
-<br><br><br><br><br>
+
   <% if @temp == "1" %>
-  <div class="text-center album py-5" display="none">
-    <div class="album py-5 offset-sm-1 col-10">
-      <div class="row">
-        <% @mypages.each do |mypage| %>
-          <% if mypage.user.user_type == "1" %>
-          <div class="col-md-3">
-            <div class ="card mb-4 box-shadow"> 
-              <div class="card-body">
-                <% if mypage.user.avatar.blank? %>
-                  <%= link_to image_tag("default_image.png"), "/mypages/#{mypage.user.id}", :class => "post-title-text" %>
-                <% else %>
-                  <%= link_to image_tag("#{mypage.user.avatar}"), "/mypages/#{mypage.user.id}", :class => "post-title-text" %>
-                <% end %>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="offset-2 btn-group"><br/>
-                    <center><label><%= mypage.user.name %></label><br>
-                    <%= mypage.user.introduce %><br>
-                    좋아요 : <%= mypage.get_upvotes.size %>
-                    싫어요 : <%= mypage.get_downvotes.size %></center>
-                  </div>
-                </div
-              </div>
-            </div>
-          </div>
-          <% end %>
-        <% end %>
-    </div>
-  
+    <div class="post-body offset-2 col-8">
+  		<% @mypages.each do |mypage| %>
+  			<% if mypage.user.user_type == "1" %>
+  			<div class="supply-card">
+  				<div id="image-section-padding">
+  					<% if mypage.user.avatar.blank? %>
+  		         <%= link_to image_tag("default_image.png", :class => "profile-img"), "/mypages/#{mypage.user.id}"%>
+  		      <% else %>
+  		          <%= link_to image_tag("#{mypage.user.avatar}", :class => "profile-img"), "/mypages/#{mypage.user.id}"%>
+  		      <% end %>
+  				</div>
+  				<div id="supply-inform">
+  					<!-- 이름 -->
+  						<label>이름 : </label><%= mypage.user.name %><br/>
+  					<!-- 한줄 소개 -->
+  						<label>한줄 소개 : </label><%= mypage.user.introduce %><br/>
+  					<!-- 평점 -->
+  					  <label>평점 : </label><%= mypage.user.rating %>
+  				</div>
+  				<div id="like-worst">
+  						<label class="like-worst-label">좋아요 : <%= mypage.get_upvotes.size %></label>
+              <label class="like-worst-label">싫어요 : <%= mypage.get_downvotes.size %></label>
+  				</div>
+  			</div>
+  		<%end%>
+  	<%end%>
+  </div>
   <!--소비자-->
   <% elsif @temp == "2" %>
-  <center>
+  <center style="margin-top: 7%;">
     <% if (current_user.user_type == "2" && @temp == "2") || (current_user.user_type == "3" && @temp == "2") %>
       <%= link_to '생성', new_post_path, :class => 'btn btn-lg btn-block', :style => "background-color: #96B566; width: 20%; margin-bottom: 5%" %>
     <% end %>
@@ -41,7 +40,7 @@
         <option value="리모델링">리모델링</option>
         <option value="리모델링+공사">리모델링+공사</option>
       </select>
-      <button type="submit" style="color:white; font-size:13px;" class="btn btn-danger btn-sm btn-signin">이동</button>
+      <button type="submit" style="color:white; font-size:13px;" class="btn btn-lg">이동</button>
     </form>
   </center>
   <div class="container">
@@ -64,8 +63,6 @@
             <td class="text-center"><%=post.content.html_safe%></td>
             <td class="text-center"><%=post.category%></td>
             <td class="text-center">
-              <%= link_to '수정', edit_post_path(post) , :class => "btn", :style => "background-color: #BCE27F;" %>
-              <%= link_to '삭제', post, method: :delete, :class => "btn btn-light post-title-delete",  data: { confirm: '정말 삭제하시겠습니까?' } %>
             </td>
           </tr>
         <% end %>

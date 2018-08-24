@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   get '/mypage/index'
   get 'portfolios/edit' => "portfolios#edit"
   post '/portfolios/update' => "portfolios#update"
+  get '/matching/:post_id/:name' => "posts#matching", :constraints  => { :name => /[0-z\.]+/ }
   devise_for :users
   
   # The priority is based upon order of creation: first created -> highest priority.

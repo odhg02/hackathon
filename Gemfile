@@ -22,6 +22,9 @@ gem 'acts_as_votable', '~> 0.11.1'
 
 # 페이지네이션
 gem 'kaminari'
+gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'bootstrap_form'
+gem 'bootstrap4-kaminari-views'
 
 # 텍스트 편집기
 gem 'tinymce-rails'

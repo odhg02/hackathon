@@ -33,6 +33,17 @@ class ReviewsController < ApplicationController
     @review.user_id = current_user.id
     @review.post_id = params[:post_id]
     @review.rating = params[:rating].to_i
+    @matching = Matching.find_by(post_id: params[:post_id])
+    @supply = User.find_by(email: @matching.supply.to_s)
+    
+    if @supply.rating == 0.0
+      @supply.rating = params[:rating].to_i
+    else
+      @supply.rating = ((@supply.rating + params[:rating].to_i) / 2).round(1)
+    end
+    
+    @supply.save
+    
     respond_to do |format|
       if @review.save
         format.html { redirect_to @review, notice: 'Notice was successfully created.' }

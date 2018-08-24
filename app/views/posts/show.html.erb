@@ -16,7 +16,7 @@
 
 <%= form_for(@comment, url: post_comments_path(@post), remote: true) do |f| %>
   <div class="input-field">
-    <%= f.text_area :comment, class: "form-control", placeholder: "댓글쓰기...", required: true, id: "comment", rows: "5" %>
+    <%= f.text_area :comment, class: "form-control", placeholder: "댓글쓰기...", required: true, id: "comment", rows: "3" %>
   </div>
   <br />
   <div class="input-field">
@@ -30,7 +30,7 @@
 <% end %><br><br>
 <script>
 function matching() {
-  var input = prompt("매칭", "공급자의 이름을 입력해주세요.");
+  var input = prompt("매칭", "공급자의 이메일을 입력해주세요.");
   document.getElementById("supply").value = input;
   
   var address = "/matching/" + <%= @post.id %> + "/" + input;
@@ -64,6 +64,9 @@ function matching() {
     </ul>
   <% end %>
 
+<% if @post.user == current_user %>
 <%= link_to '수정', edit_post_path(@post) %> 
 <%= link_to '뒤로가기', '/posts?membertype=2' %>
+<%= link_to '삭제', @post, method: :delete, data: { confirm: '정말 삭제하시겠습니까?' } %>
+<% end %>
 </div>

@@ -36,6 +36,11 @@
         <%= f.password_field :password_confirmation, :class => "form-control col-10", autocomplete: "off" %>
       </div>
       
+      <div class="form-group">
+        <%= f.label :rating %><br/>
+        <%= f.hidden_field :rating, :value => 0.0 %>
+      </div>
+      
       <!-- 프로필 사진 추가(carrierwave, mini_magick) -->
       <div class="field">
         <%= f.label :avatar do %>

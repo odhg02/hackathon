@@ -2,6 +2,11 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index, :new, :create, :show, :edit, :update, :destroy, :search]
 
+  def matching
+    @matching = Matching.create(user_id: current_user.id, post_id: params[:post_id], supply: params[:name].to_s, status: 1)
+    redirect_to :back
+  end
+
   def search
     @test = params[:category]
     @posts = Post.where(membertype: "2", category: params[:category])

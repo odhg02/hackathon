@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20180824062853) do
   add_index "roles", ["name"], name: "index_roles_on_name"
 
   create_table "users", force: :cascade do |t|
+    t.float    "rating"
     t.string   "user_type"
     t.string   "name"
     t.string   "introduce"

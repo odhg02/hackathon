@@ -46,6 +46,6 @@ class MypagesController < ApplicationController
   private
     def set_mypage
       @user = User.find(params[:user_id])
-      @mypage = Mypage.find(@user.id)
+      @mypage = Mypage.find_by(user_id: @user)
     end    
 end

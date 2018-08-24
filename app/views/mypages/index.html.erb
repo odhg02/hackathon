@@ -31,6 +31,8 @@
 		#user-img{
 		   max-width: 150px;
 		   max-height: 150px;
+		   min-width: 150px;
+		   min-height: 150px;
 			margin-top: 5px;
 			margin-left: 2%;
 			border: 1px solid #BCE27F;
@@ -58,7 +60,8 @@
 			margin-top: 5px;
 		}
 		.user-inform{
-			margin-top: 8%;
+			margin-top: 5%;
+			margin-left: 2%;
 			width: 40%;
 			height:30px;
 			font-size: 15px;
@@ -91,14 +94,27 @@
 <body>
    <div class="card-form">
       <div class="image-section">
-         <center><img id="user-img" src="/profile-img.jpg" alt="profile" /></center>
+         <!--<center><img id="user-img" src="/profile-img.jpg" alt="profile" /></center>-->
+         <% if @mypage.user.avatar.blank? %>
+  		     <%= link_to image_tag("default_image.png", :id => "user-img"), "/mypages/#{@mypage.user.id}"%>
+  		   <% else %>
+  		     <%= link_to image_tag("#{@mypage.user.avatar}", :id => "user-img"), "/mypages/#{@mypage.user.id}"%>
+  		   <% end %>
       </div>
       <div class="user-inform">
          <div class="name">
-            <label id="user-role">수요자</label>
-            <label id="user-name">이름</label>
+            <%if @mypage.user.user_type == "1" %>
+               <label id="user-role">공급자</label><br/>
+            <%elsif @mypage.user.user_type == "2" %>
+               <label id="user-role">수요자</label><br/>
+            <%else%>
+               <label id="user-role">관리자</label><br/>
+            <%end%>
+            <label id="user-name">이름 : </label>
+            <%= @mypage.user.name %>
          </div>
-         <p>introduce</p>
+         <label>introduce</label><br/>
+         <%= @mypage.user.introduce %>
       </div>
       <!-- using acts_as_votable gem -->
       <div class="likeorworst">
@@ -110,24 +126,22 @@
    </div>
    <div class="section">
       <div class="button-group">
-         <div id="portfolio">
-            <button href="#">포트폴리오</button>
-         </div>
-         <div id="post">
-            <% if @mypage.user == current_user %>
-            <button href="#">내가 작성한 글</button>
-            <% else %>
-            <button href="#">작성한 글</button>
-            <% end %>
-         </div>
-         <div id="like-supply">
-            <button href="#">좋아요한 공급자</button>
-         </div>
-         <div id="inform-edit">
-            <% if @mypage.user == current_user %>
-            <button href="#">정보수정</button>
-            <% end %>
-         </div>
+        
+         <button href="#" id="portfolio">포트폴리오</button>
+
+         <% if @mypage.user == current_user %>
+            <button href="#" id="post">내가 작성한 글</button>
+         <% else %>
+            <button href="#" id="post">작성한 글</button>
+         <% end %>
+         
+         <% if @mypage.user.user_type == "2" %>
+            <button href="#" id="like-supply">좋아요한 공급자</button>
+         <% end %>
+         
+         <% if @mypage.user == current_user %>
+            <button href="#" id="inform-edit">정보수정</button>
+         <% end %>
       </div>
       <div class="content-section">
          <div class="content-class" id="port"><!--포트폴리오-->
@@ -192,8 +206,8 @@
             <% end %>
 
          </div>
-           
-         <div class="content-class" id="mypost"><!--작성한 글-->
+         <!--작성한 글-->  
+         <div class="content-class" id="mypost">
             <% if @mypage.user.user_type == "2" %>
                <div>
                <label>작성한 post</label><br/>
@@ -204,7 +218,9 @@
                </ul>
                </div><br><br>
             <% end %>
+            
             <label>작성한 Q&A</label><br/>
+            
             <div>
                <ul> 
                   <% @qnas.each do |p| %> 
@@ -222,6 +238,7 @@
                </ul>
             </div><br><br>
          </div>
+         
            
          <div class="content-class" id="mylike"><!--좋아요 한 공급자-->
             <% if @mypage.user.user_type == "2" %>
@@ -232,9 +249,10 @@
                <% end %>
             <% end %>
          </div>
+         <!--정보수정 영역-->
          <div class="content-class" id="myinform">
             <% if @mypage.user == current_user %>
-               <a href="/users/edit">정보 수정</a>
+               <a href="/users/edit" class="btn btn-lg btn-block ">정보 수정</a>
             <% end %>
          </div>
       </div>
